@@ -12,11 +12,10 @@ def home():
 @bpapi.route("/<maker_id>/product", methods=['POST'])
 def register_maker_product(maker_id):
     if request.method == "POST":
-        #todo parse post result
         datas = request.form
         name = datas["name"]
         price = datas["price"]
-        carbon_footprint = datas["carbon_footprint"]
+        carbon_footprint = datas["carbon_foot_print"]
         quantity_unity = datas["quantity_unity"]
         category_id = datas["category_id"]
         expedition_transport_id = datas["expedition_transport_id"]
