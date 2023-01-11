@@ -10,7 +10,7 @@ def get_seller_partners_db(seller_id):
                         WHERE seller.seller_id=%s",(seller_id,))
         partners = []
         for element in cursor.fetchall():
-            partners.append({"maker_id":element[0], "name":element[1], "location":element[2]})
+            partners.append({"id":element[0], "name":element[1], "location":element[2]})
         return partners
     except Exception as e:
         print(e)
