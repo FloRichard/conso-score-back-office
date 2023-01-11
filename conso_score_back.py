@@ -7,8 +7,7 @@ from flask_cors import CORS
 app = create_app(debug=True)
 
 # global to app
-#CORS(app, resources={r"/api/v1": {"origins": os.environ.get('CORS_URL')}})
-    
+cors = CORS(app, resources={r"/*": {"origins": "localhost:5173"}})    
 if __name__ == '__main__':
     app.run()
     #from waitress import serve

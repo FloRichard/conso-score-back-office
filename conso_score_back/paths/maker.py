@@ -10,6 +10,7 @@ def home():
     return "maker"
 
 @bpapi.route("/<maker_id>/product", methods=['POST'])
+@cross_origin()
 def register_maker_product(maker_id):
     if request.method == "POST":
         datas = request.form
@@ -23,11 +24,13 @@ def register_maker_product(maker_id):
         return "success" #200OK
 
 @bpapi.route("/<maker_id>/products", methods=['GET'])
+@cross_origin()
 def get_maker_products(maker_id):
     products = get_maker_products_db(maker_id)
     return jsonify(products)
 
 @bpapi.route("/<maker_id>/product/<product_id>", methods=['GET'])
+@cross_origin()
 def get_maker_product(maker_id, product_id):
     product = get_maker_product_db(maker_id, product_id)
     return jsonify(product) #one product information

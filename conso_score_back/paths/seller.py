@@ -9,18 +9,22 @@ bpapi = Blueprint('/seller', __name__, url_prefix='/seller')
 def home():
     return jsonify(get_all_products_db()) #test
 
-
-@bpapi.route("/<seller_id>/product", methods=['POST'])
+@bpapi.route("/<seller_id>/product", methods=['POST','OPTIONS'])
+@cross_origin(headers=['Content-Type'])
 def seller_get_product(seller_id):
     if request.method == 'POST':
         datas = request.form
+        print(datas)
+        return ""
         product_id =  datas["product_id"]
         price = datas["price"]
         bar_code = datas["bar_code"]
         quantity = datas["quantity"]
         return register_seller_product_db(seller_id, product_id, price, bar_code,quantity)
-        
+    return ""
+
 @bpapi.route("/<seller_id>/makers", methods=['GET'])
+@cross_origin()
 def seller_partners(seller_id):
     partners = get_seller_partners_db(seller_id)
     return jsonify(partners)
