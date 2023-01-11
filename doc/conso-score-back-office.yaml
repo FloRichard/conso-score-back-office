@@ -1,0 +1,239 @@
+openapi: '3.0.0'
+info:
+  title: 'Conso score back office'
+  version: '0.0.0'
+
+tags:
+  - name: Seller
+  - name: Maker
+  - name: Products
+
+paths:
+  /maker/{maker_id}/product:
+    post:
+      description: Add a product to a maker
+      tags:
+        - Maker
+      parameters:
+        - in: path
+          name: maker_id
+          schema:
+            type: string
+          description: The maker id
+          required: true
+      requestBody:
+        description: The product to add
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/product'
+      responses:
+        '201':
+          description: The product has been created.
+        '400':
+          description: Bad request
+        '404':
+          description: Not found
+        '500':
+          description: Internal server error
+  /maker/{maker_id}/products:
+      get:
+        description: Get all products
+        tags:
+          - Maker
+        parameters:
+          - in: path
+            name: maker_id
+            schema:
+              type: string
+            description: The maker id
+            required: true
+        responses:
+          '200':
+            $ref: '#/components/responses/GetSellerMakers200OK'
+          '400':
+            description: Bad request
+          '404':
+            description: Not found
+          '500':
+            description: Internal server error
+
+  /maker/{maker_id}/product/{product_id}:
+      get:
+        description: Get all products
+        tags:
+          - Maker
+        parameters:
+          - in: path
+            name: maker_id
+            schema:
+              type: string
+            description: The maker id
+            required: true
+          - in: path
+            name: product_id
+            schema:
+              type: string
+            description: The product id
+            required: true
+        responses:
+          '200':
+            $ref: '#/components/responses/GetMakerProduct200OK'
+          '400':
+            description: Bad request
+          '404':
+            description: Not found
+          '500':
+            description: Internal server error
+
+  /seller/{seller_id}/product:
+    post:
+      description: Add a product to a seller
+      tags:
+        - Seller
+      parameters:
+        - in: path
+          name: seller_id
+          schema:
+            type: string
+          description: The seller id
+          required: true
+
+      requestBody:
+        description: The product to add to the seller stock
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                bar_code: 
+                  type: string 
+                maker_product_id: 
+                  type: string
+                price: 
+                  type: string
+                quantity: 
+                  type: number
+              example:
+                bar_code: 1234
+                maker_product_id: 58e8715d-4853-4497-bd57-357939da1a08
+                price: 2
+                quantity: 8
+
+      responses:
+        '201':
+          $ref: '#/components/responses/PostSellerProduct201NoContent'
+        '400':
+          description: Bad request
+        '404':
+          description: Not found
+        '500':
+          description: Internal server error
+
+  /seller/{seller_id}/makers:
+    get:
+      description: Get all the makers of the seller
+      tags:
+        - Seller
+      parameters:
+        - in: path
+          name: seller_id
+          schema:
+            type: string
+          description: The seller id
+          required: true
+      responses:
+        '200':
+          $ref: '#/components/responses/GetSellerMakers200OK'
+        '400':
+          description: Bad request
+        '404':
+          description: Not found
+        '500':
+          description: Internal server error
+
+ 
+
+components:
+  schemas:
+    product:
+      type: object
+      properties:
+        id: 
+          type: string 
+        name: 
+          type: string
+        price: 
+          type: number 
+        carbon_foot_print:
+          type: number
+        quantity_unity: 
+          type: string 
+        category_id: 
+          type: string 
+        expedition_transport_id: 
+          type: string
+
+    seller_product:
+      type: object
+      properties:
+        id: 
+          type: string
+        price: 
+          type: number 
+        conso_score: 
+          type: number 
+        bar_code: 
+          type: number 
+        tax: 
+          type: number 
+        maker_product: 
+          $ref: '#/components/schemas/product'
+
+    seller: 
+      type: array 
+      items:
+        type: object 
+        properties: 
+          id: 
+            type: string
+          name: 
+            type: string 
+          location: 
+            type: string
+
+  responses:
+    PostMakerProduct201NoContent:
+      description: The maker product has been created
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/product'
+
+    PostSellerProduct201NoContent:
+      description: The conso score and the tax (in % of the price) associated to the product
+      content:
+        application/json:
+          schema:
+            type: object 
+            properties:
+              conso_score: 
+                type: number
+              tax: 
+                type: number
+
+    GetSellerMakers200OK:
+      description: The makers associated with the seller
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/seller'
+
+    GetMakerProduct200OK:
+      description: A specific product of the maker
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/product'
