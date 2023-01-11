@@ -1,11 +1,12 @@
 from flask import Blueprint, request, jsonify, request,render_template, flash, session
 from flask_cors import cross_origin
-
+from ..data_access.get_seller_datas import  get_seller_partners_db
+from ..data_access.get_datas import get_all_transports_db, get_all_products_db
 bpapi = Blueprint('/seller', __name__, url_prefix='/seller')
 
 @bpapi.route("/")
 def home():
-    return "seller"
+    return jsonify(get_all_products_db()) #test
 
 
 @bpapi.route("/<seller_id>/product", methods=['GET','POST'])
@@ -20,5 +21,6 @@ def seller_get_product(seller_id):
 
 @bpapi.route("/<seller_id>/makers", methods=['GET'])
 def seller_partners(seller_id):
-    #todo call get_seller_partners
-    return jsonify([{"id":"abc-ze", "name":"la ferme ficelle", "location":"caen"}, {"id":"abc-azeuaz", "name":"la ferme de bretagne", "location":"rennes"}])
+    partners = get_seller_partners_db(seller_id)
+    return jsonify(partners)
+

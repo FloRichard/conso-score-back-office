@@ -10,4 +10,7 @@ def create_app(debug=False):
 
 	from .paths import maker
 	app.register_blueprint(maker.bpapi)
+
+	from .paths import datas 
+	app.register_blueprint(datas.bpapi)
 	return app
