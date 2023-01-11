@@ -6,7 +6,7 @@ info:
 tags:
   - name: Seller
   - name: Maker
-  - name: Products
+  - name: Product
 
 paths:
   /maker/{maker_id}/product:
@@ -154,7 +154,21 @@ paths:
         '500':
           description: Internal server error
 
- 
+  /product/{bar_code}: 
+    get: 
+      description: Retrieve a specific product 
+      tags: 
+        - Product 
+      parameters: 
+        - in: path
+          name: bar_code
+          schema:
+            type: string
+          description: Thebar code of the product
+          required: true
+      responses:
+        '200':
+            $ref: '#/components/responses/GetProduct200OK'
 
 components:
   schemas:
@@ -237,3 +251,10 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/product'
+
+    GetProduct200OK:
+      description: A specific seller product
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/seller_product'
