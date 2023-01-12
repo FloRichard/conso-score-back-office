@@ -51,7 +51,7 @@ paths:
           required: true
       responses:
         "200":
-          $ref: "#/components/responses/GetSellerMakers200OK"
+          $ref: "#/components/responses/GetMakersProducts200OK"
         "400":
           description: Bad request
         "404":
@@ -164,48 +164,7 @@ paths:
           name: bar_code
           schema:
             type: string
-          description: The bar code of the product
-          required: true
-      responses:
-        "200":
-          $ref: "#/components/responses/GetProductInfos200OK"
-
-  /datas/transport:
-    get:
-      description: Get the list of all the transportation means
-      tags:
-        - Datas
-      responses:
-        "200":
-          $ref: "#/components/responses/GetTransportationMeans200OK"
-
-  /datas/transport/{transport_id}:
-    get:
-      description: Retrieve a specific transportation means and carbon footprint
-      tags:
-        - Datas
-      parameters:
-        - in: path
-          name: transport_id
-          schema:
-            type: string
-          description: The id of the transportation mean
-          required: true
-      responses:
-        "200":
-          $ref: "#/components/responses/GetTransportationMeanById200OK"
-
-  /datas/category/{category_id}:
-    get:
-      description: Retrieve a specific category name of food
-      tags:
-        - Datas
-      parameters:
-        - in: path
-          name: category_id
-          schema:
-            type: string
-          description: The id of the category wanted
+          description: Thebar code of the product
           required: true
       responses:
         "200":
@@ -338,6 +297,15 @@ components:
         application/json:
           schema:
             $ref: "#/components/schemas/product"
+
+    GetMakersProducts200OK:
+      description: Get the list of the makers product 
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/product'
 
     GetProduct200OK:
       description: A specific seller product
