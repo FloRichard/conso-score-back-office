@@ -8,6 +8,17 @@ services:
     ports:
       - "5000:5000"
 
+  conso_score_auth:
+    container_name: conso_score_auth
+    restart: unless-stopped
+    build:
+      context: ../conso-score-user-manager
+      dockerfile: ./Dockerfile
+    depends_on:
+      - conso_score_postgresql
+    ports:
+      - "5001:5000"
+
   conso_score_postgresql:
     container_name: conso_score_postgresql
     image: postgres
