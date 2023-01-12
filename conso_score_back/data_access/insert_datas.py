@@ -62,7 +62,7 @@ def calculate_conso_score(product_id, quantity):
         if conso_score < 2.5 and conso_score > 0:
             taxe = 0
         else:
-            taxe = ((int(carbon_footprint) / 2500) ** 1.3) * 1.4 #int(conso_score) * 0.05
+            taxe = ((int(carbon_footprint) / 250) ** 1.3) * 1.4 #int(conso_score) * 0.05
         return int(conso_score), int(taxe)
     except Exception as e:
         print(e)
