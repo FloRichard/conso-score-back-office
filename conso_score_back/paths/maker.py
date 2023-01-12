@@ -12,7 +12,7 @@ def register_maker_product(maker_id):
         datas = request.json
         name = datas["name"]
         price = datas["price"]
-        carbon_footprint = datas["carbon_foot_print"]
+        carbon_footprint = datas["carbon_footprint"]
         quantity_unity = datas["quantity_unity"]
         category_id = datas["category_id"]
         expedition_transport_id = datas["expedition_transport_id"]
