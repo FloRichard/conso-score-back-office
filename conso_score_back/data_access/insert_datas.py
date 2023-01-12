@@ -59,7 +59,10 @@ def calculate_conso_score(product_id, quantity):
         cursor.execute("SELECT carbon_footprint FROM product WHERE product_id=%s",(product_id,))
         carbon_footprint = cursor.fetchone()[0]
         conso_score = int(carbon_footprint) / 100 #* int(quantity) / 100 #TOTO ADAPTER
-        taxe = ((int(carbon_footprint) / 25) ** 1.3) * 1.4 #int(conso_score) * 0.05
+        if conso_score < 2.5 and conso_score > 0:
+            taxe = 0
+        else:
+            taxe = ((int(carbon_footprint) / 25) ** 1.3) * 1.4 #int(conso_score) * 0.05
         return int(conso_score), int(taxe)
     except Exception as e:
         print(e)

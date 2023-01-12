@@ -13,8 +13,8 @@ insert into public.product (product_id, name, price, carbon_footprint, quantity_
 insert into public.product (product_id, name, price, carbon_footprint, quantity_unity, category_id, expedition_transport_id) values ('87a1e36f-c193-4640-ba98-fd8dd58e25ce','Carrote', 1, 100, 'Kg', '9fa21198-325a-4f8b-9800-6cbe84346bb4', '00f95a18-4736-484e-9a3d-f23703fb95c8');
 
 -- Creating the seller products
-insert into public.seller_product (seller_product_id , product_id, price, conso_score, bar_code, tax) values ('ddafae54-a96c-4b3d-95ea-8ff3e6ef0d71', '588c72f7-65e3-4d41-93e7-31cea19fce2d', 40, 67, 1234, 15);
-insert into public.seller_product (seller_product_id , product_id, price, conso_score, bar_code, tax) values ('cd6d6cc4-0775-4749-b9b7-bc6e5eed9e1b', '87a1e36f-c193-4640-ba98-fd8dd58e25ce', 2, 15, 4321, 0);
+insert into public.seller_product (seller_product_id , product_id, price, conso_score, bar_code, tax) values ('ddafae54-a96c-4b3d-95ea-8ff3e6ef0d71', '588c72f7-65e3-4d41-93e7-31cea19fce2d', 40, 67, '1234', 15);
+insert into public.seller_product (seller_product_id , product_id, price, conso_score, bar_code, tax) values ('cd6d6cc4-0775-4749-b9b7-bc6e5eed9e1b', '87a1e36f-c193-4640-ba98-fd8dd58e25ce', 2, 15, '4321', 0);
 
 -- Creating a seller 
 insert into public.seller(seller_id, name, location) values ('5a39c805-4e15-4944-80af-333d2d11bced', 'Jean Dupont POS', '24 rue Lanfranc, 14000, Caen');

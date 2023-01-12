@@ -50,7 +50,7 @@ create table public.seller_product (
     product_id uuid not null,
     price real not null,
     conso_score int,
-    bar_code int not null,
+    bar_code varchar(128) not null,
     tax int,
     constraint pk_seller_product primary key (seller_product_id)
 );
@@ -66,7 +66,7 @@ create table public.product (
     product_id uuid DEFAULT uuid_generate_v4() not null,
     name varchar(128) not null,
     price real not null,
-    carbon_footprint int not null,
+    carbon_footprint real not null,
     quantity_unity varchar(128) not null,
     category_id uuid not null,
     expedition_transport_id uuid not null,
