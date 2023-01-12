@@ -45,6 +45,9 @@ def register_seller_product_db(seller_id, product_id, price, bar_code,quantity):
                 values (%s, %s,%s, %s)",(seller_stock_id[0], seller_product_id[0], seller_id, quantity))
 
             get_db().commit()
+
+            conso_score = conso_score_letter(conso_score)
+
             return {"conso_score":conso_score, "tax":tax}
     except Exception as e:
         print(e)
@@ -55,9 +58,23 @@ def calculate_conso_score(product_id, quantity):
         cursor = get_db().cursor()
         cursor.execute("SELECT carbon_footprint FROM product WHERE product_id=%s",(product_id,))
         carbon_footprint = cursor.fetchone()[0]
-        conso_score = int(carbon_footprint) * int(quantity) / 100 #TOTO ADAPTER
-        taxe = int(conso_score) * 0.05
+        conso_score = int(carbon_footprint) / 100 #* int(quantity) / 100 #TOTO ADAPTER
+        taxe = ((int(carbon_footprint) / 25) ** 1.3) * 1.4 #int(conso_score) * 0.05
         return int(conso_score), int(taxe)
     except Exception as e:
         print(e)
         return "an error occured while calculating the conso score", -1
+
+def conso_score_letter(conso_score):
+    if conso_score > 10:
+        return "E"
+    elif conso_score < 10 and conso_score > 7.5:
+        return "D"
+    elif conso_score < 7.5 and conso_score > 5:
+        return "C"
+    elif conso_score < 5 and conso_score > 2.5:
+        return "B"
+    elif conso_score < 2.5 and conso_score > 0:
+        return "A"
+    else:
+        return "an error occured"
