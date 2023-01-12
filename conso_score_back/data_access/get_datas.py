@@ -15,6 +15,14 @@ def get_all_transports_db():
         transports.append({"transport_id":element[0], "name":element[1]})
     return transports
 
+def get_all_categories_db():
+    cursor = get_db().cursor()
+    cursor.execute("SELECT category_id, name FROM category")
+    categories = []
+    for element in cursor.fetchall():
+        categories.append({"category_id":element[0], "name":element[1]})
+    return categories
+
 def get_product_by_barcode(bar_code):
     try:
         cursor = get_db().cursor()

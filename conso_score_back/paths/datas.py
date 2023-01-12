@@ -1,5 +1,5 @@
 from flask import Blueprint,jsonify
-from ..data_access.get_datas import get_all_transports_db,get_product_by_barcode, get_transport_by_id_db, get_category_by_id_db
+from ..data_access.get_datas import get_all_transports_db,get_product_by_barcode, get_transport_by_id_db, get_category_by_id_db, get_all_categories_db
 from flask_cors import cross_origin
 
 bpapi = Blueprint('/datas', __name__, url_prefix='/datas')
@@ -9,6 +9,12 @@ bpapi = Blueprint('/datas', __name__, url_prefix='/datas')
 def get_transportation_list():
     transports = get_all_transports_db()
     return jsonify(transports)
+
+@bpapi.route("/categories", methods=['GET'])
+@cross_origin()
+def get_categories_list():
+    categories = get_all_categories_db()
+    return jsonify(categories)
 
 @bpapi.route("/product/<bar_code>")
 @cross_origin()
