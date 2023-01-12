@@ -9,7 +9,7 @@ bpapi = Blueprint('/maker', __name__, url_prefix='/maker')
 @cross_origin()
 def register_maker_product(maker_id):
     if request.method == "POST":
-        datas = request.form
+        datas = request.json
         name = datas["name"]
         price = datas["price"]
         carbon_footprint = datas["carbon_foot_print"]
