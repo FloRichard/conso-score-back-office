@@ -179,6 +179,38 @@ paths:
         "200":
           $ref: "#/components/responses/GetTransportationMeans200OK"
 
+  /datas/transport/{transport_id}:
+    get:
+      description: Retrieve a specific transportation means and carbon footprint
+      tags:
+        - Datas
+      parameters:
+        - in: path
+          name: transport_id
+          schema:
+            type: string
+          description: The id of the transportation mean
+          required: true
+      responses:
+        "200":
+          $ref: "#/components/responses/GetTransportationMeanById200OK"
+
+  /datas/category/{category_id}:
+    get:
+      description: Retrieve a specific category name of food
+      tags:
+        - Datas
+      parameters:
+        - in: path
+          name: category_id
+          schema:
+            type: string
+          description: The id of the category wanted
+          required: true
+      responses:
+        "200":
+          $ref: "#/components/responses/GetCategoryNameById200OK"
+
 components:
   schemas:
     product:
@@ -228,6 +260,20 @@ components:
       properties:
         transport_id:
           type: string
+        name:
+          type: string
+
+    transport_infos:
+      type: object
+      properties:
+        name:
+          type: string
+        kilometer_carbon_footprint:
+          type: number
+
+    category_name:
+      type: object
+      properties:
         name:
           type: string
 
@@ -313,3 +359,17 @@ components:
         application/json:
           schema:
             $ref: "#/components/schemas/transport"
+
+    GetTransportationMeanById200OK:
+      description: Get the transportation mean name by id
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/transport_infos"
+
+    GetCategoryNameById200OK:
+      description: Get the category of a product by id
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/category_name"
