@@ -11,7 +11,7 @@ def get_maker_products_db(maker_id):
         products = []
 
         for element in cursor.fetchall():
-            products.append({"product_id":element[0], "name":element[1]})
+            products.append({"product_id":element[0], "name":element[1], "price":element[2], "carbon_footprint":element[3],"quantity_unity":element[4],"category_id":element[5],"expedition_transport_id":element[6]})
         return products
     except Exception as e:
         print(e)
