@@ -3,11 +3,11 @@ import os
 from conso_score_back import create_app
 from flask_cors import CORS
 
-#load_dotenv('.env')
+# load_dotenv('.env')
 app = create_app(debug=True)
 
 # global to app
-cors = CORS(app, resources={r"/*": {"origins": "localhost:5173"}})    
+cors = CORS(app, resources={r"/*": {"origins": "*:5173"}})
 if __name__ == '__main__':
     app.run()
     #from waitress import serve
