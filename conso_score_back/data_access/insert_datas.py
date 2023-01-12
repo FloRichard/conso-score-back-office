@@ -71,13 +71,13 @@ def calculate_conso_score(product_id, quantity):
 def conso_score_letter(conso_score):
     if conso_score > 10:
         return "E"
-    elif conso_score < 10 and conso_score > 7.5:
+    elif conso_score <= 10 and conso_score > 7.5:
         return "D"
-    elif conso_score < 7.5 and conso_score > 5:
+    elif conso_score <= 7.5 and conso_score > 5:
         return "C"
-    elif conso_score < 5 and conso_score > 2.5:
+    elif conso_score <= 5 and conso_score > 2.5:
         return "B"
-    elif conso_score < 2.5 and conso_score > 0:
+    elif conso_score <= 2.5 and conso_score > 0:
         return "A"
     else:
         return "an error occured"

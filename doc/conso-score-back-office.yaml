@@ -164,7 +164,48 @@ paths:
           name: bar_code
           schema:
             type: string
-          description: Thebar code of the product
+          description: The bar code of the product
+          required: true
+      responses:
+        "200":
+          $ref: "#/components/responses/GetProductInfos200OK"
+
+  /datas/transport:
+    get:
+      description: Get the list of all the transportation means
+      tags:
+        - Datas
+      responses:
+        "200":
+          $ref: "#/components/responses/GetTransportationMeans200OK"
+
+  /datas/transport/{transport_id}:
+    get:
+      description: Retrieve a specific transportation means and carbon footprint
+      tags:
+        - Datas
+      parameters:
+        - in: path
+          name: transport_id
+          schema:
+            type: string
+          description: The id of the transportation mean
+          required: true
+      responses:
+        "200":
+          $ref: "#/components/responses/GetTransportationMeanById200OK"
+
+  /datas/category/{category_id}:
+    get:
+      description: Retrieve a specific category name of food
+      tags:
+        - Datas
+      parameters:
+        - in: path
+          name: category_id
+          schema:
+            type: string
+          description: The id of the category wanted
           required: true
       responses:
         "200":
@@ -181,7 +222,7 @@ components:
           type: string
         price:
           type: number
-        carbon_foot_print:
+        carbon_footprint:
           type: number
         quantity_unity:
           type: string
@@ -201,7 +242,7 @@ components:
           type: number
         bar_code:
           type: number
-        carbon_foot_print:
+        carbon_footprint:
           type: number
         conso_score:
           type: number
@@ -299,13 +340,13 @@ components:
             $ref: "#/components/schemas/product"
 
     GetMakersProducts200OK:
-      description: Get the list of the makers product 
+      description: Get the list of the makers product
       content:
         application/json:
           schema:
             type: array
             items:
-              $ref: '#/components/schemas/product'
+              $ref: "#/components/schemas/product"
 
     GetProduct200OK:
       description: A specific seller product
