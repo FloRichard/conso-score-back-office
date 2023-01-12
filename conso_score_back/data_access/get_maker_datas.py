@@ -27,7 +27,7 @@ def get_maker_product_db(maker_id, product_id):
                         WHERE maker.maker_id=%s \
                         AND product.product_id=%s;",(maker_id,product_id))
         result = cursor.fetchone()
-        return {"id":result[0], "name":result[1], "price":result[2], "carbon_foot_print":result[3], "quantity_unity":result[4], "category_id":result[5], "expedition_transport_id":result[6]}
+        return {"id":result[0], "name":result[1], "price":result[2], "carbon_footprint":result[3], "quantity_unity":result[4], "category_id":result[5], "expedition_transport_id":result[6]}
     except Exception as e:
         print(e)
         return "an error occured while fetching maker's product"
