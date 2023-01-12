@@ -6,9 +6,9 @@ def get_db():
     if 'db' not in g:
         #print("creating connection" + DATA_URL)
         g.db = psycopg2.connect(
-            host="localhost",
-            port=15432,
-            database="postgres", #consoscore ne marche pas
+            host="conso_score_postgresql",
+            port=5432,
+            database="consoscore", #consoscore ne marche pas
             user="conso_score_user",
             password="conso_score_user_pwd"
         )

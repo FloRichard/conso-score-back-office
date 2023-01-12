@@ -29,10 +29,10 @@ def get_product_by_barcode(bar_code):
         category = result[5]
         transport_cat = result[6]
         print("product", product)
-        cursor.execute("SELECT name FROM category WHERE category_id = %s", (category,))
+        cursor.execute("SELECT name FROM public.category WHERE category_id = %s", (category,))
         product["category"] = cursor.fetchone()[0]
 
-        cursor.execute("SELECT name FROM expedition_transport WHERE expedition_transport_id = %s", (transport_cat,))
+        cursor.execute("SELECT name FROM public.expedition_transport WHERE expedition_transport_id = %s", (transport_cat,))
         product["transport"] = cursor.fetchone()[0]
         print(product)
         return product
@@ -42,14 +42,14 @@ def get_product_by_barcode(bar_code):
         
 def get_transport_by_id_db(transport_id):
     cursor = get_db().cursor()
-    cursor.execute("SELECT name, kilometer_carbon_footprint FROM expedition_transport WHERE expedition_transport_id = %s", (transport_id,))
+    cursor.execute("SELECT name, kilometer_carbon_footprint FROM public.expedition_transport WHERE expedition_transport_id = %s", (transport_id,))
     result = cursor.fetchone()
     transport = {"name":result[0], "carbon_footprint":result[1]}
     return transport
 
 def get_category_by_id_db(category_id):
     cursor = get_db().cursor()
-    cursor.execute("SELECT name FROM category WHERE category_id = %s", (category_id,))
+    cursor.execute("SELECT name FROM public.category WHERE category_id = %s", (category_id,))
     result = cursor.fetchone()
     category = {"name":result[0]}
     return category
