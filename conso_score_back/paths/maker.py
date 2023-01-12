@@ -5,10 +5,6 @@ from ..data_access.insert_datas import register_maker_product_db
 bpapi = Blueprint('/maker', __name__, url_prefix='/maker')
 
 
-@bpapi.route("/")
-def home():
-    return "maker"
-
 @bpapi.route("/<maker_id>/product", methods=['POST'])
 @cross_origin()
 def register_maker_product(maker_id):

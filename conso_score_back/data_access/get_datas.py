@@ -40,13 +40,16 @@ def get_product_by_barcode(bar_code):
         print(e)
         return "an error occured while fetching product by barcode"
         
-
-#-------------------------test route
-def get_all_products_db():
-    products_infos = []
+def get_transport_by_id_db(transport_id):
     cursor = get_db().cursor()
-    carrote_test = '%' + "arr" + '%'
-    cursor.execute("SELECT product_id, name FROM product WHERE name like %s",(carrote_test,))
-    for element in cursor.fetchall():
-        products_infos.append({"product_id":element[0], "name":element[1]})
-    return products_infos
+    cursor.execute("SELECT name, kilometer_carbon_footprint FROM expedition_transport WHERE expedition_transport_id = %s", (transport_id,))
+    result = cursor.fetchone()
+    transport = {"name":result[0], "carbon_footprint":result[1]}
+    return transport
+
+def get_category_by_id_db(category_id):
+    cursor = get_db().cursor()
+    cursor.execute("SELECT name FROM category WHERE category_id = %s", (category_id,))
+    result = cursor.fetchone()
+    category = {"name":result[0]}
+    return category
