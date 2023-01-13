@@ -54,3 +54,9 @@ docker compose up --build --force-recreate
 Vous pouvez tester son bon fonctionnement en allant consulter l'url :
 
 http://**[votre ip]**:9092/datas/transport
+
+## Documentation
+
+Toutes les routes sont documentées via un swagger qui se trouve ici : `/doc/conso-score-back-office.yaml`
+
+Ouvrez [swagger editor](https://editor.swagger.io/) et copiez-collez le contenu du fichier.
