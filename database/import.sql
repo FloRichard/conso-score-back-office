@@ -14,7 +14,7 @@ insert into public.product (product_id, name, price, carbon_footprint, quantity_
 
 insert into public.product (product_id, name, price, carbon_footprint, quantity_unity, category_id, expedition_transport_id) values ('76225238-7866-4b58-b8b8-dda9ab92cdd9','Les tablettes biscuits', 7.27, 200, 'Kg', '5d42e6be-33dd-4e2a-aa07-bd512c8c08a6', '7416fd36-b450-4fe4-a777-5e033fef7c70');
 insert into public.product (product_id, name, price, carbon_footprint, quantity_unity, category_id, expedition_transport_id) values ('c1d7e749-f372-4252-ac7b-f7d1521ec29a','Lait', 1, 100, 'Kg', '5d42e6be-33dd-4e2a-aa07-bd512c8c08a6', '7416fd36-b450-4fe4-a777-5e033fef7c70');
-insert into public.product (product_id, name, price, carbon_footprint, quantity_unity, category_id, expedition_transport_id) values ('c1d7e749-f372-4252-ac7b-f7d1521ec29a','Chocolat en pourdre Poulain', 2.5, 1500, 'Kg', '5d42e6be-33dd-4e2a-aa07-bd512c8c08a6', '7416fd36-b450-4fe4-a777-5e033fef7c70');
+insert into public.product (product_id, name, price, carbon_footprint, quantity_unity, category_id, expedition_transport_id) values ('ac3de49c-463d-49a5-8262-e5391517f0ef','Chocolat en pourdre Poulain', 2.5, 1500, 'Kg', '5d42e6be-33dd-4e2a-aa07-bd512c8c08a6', '7416fd36-b450-4fe4-a777-5e033fef7c70');
 
 -- Creating the seller products
 insert into public.seller_product (seller_product_id , product_id, price, conso_score, bar_code, tax) values ('ddafae54-a96c-4b3d-95ea-8ff3e6ef0d71', '588c72f7-65e3-4d41-93e7-31cea19fce2d', 40, 67, '1234', 15);
@@ -37,6 +37,7 @@ insert into public.maker_stock (maker_stock_id, product_id, maker_id) values ('6
 
 insert into public.maker_stock (maker_stock_id, product_id, maker_id) values ('9a8de460-34bb-4fe4-a480-7e4682da73e5', '76225238-7866-4b58-b8b8-dda9ab92cdd9','3b5b26ba-bccb-460e-8db8-1f7f96848a43');
 insert into public.maker_stock (maker_stock_id, product_id, maker_id) values ('9a8de460-34bb-4fe4-a480-7e4682da73e5', 'c1d7e749-f372-4252-ac7b-f7d1521ec29a','3b5b26ba-bccb-460e-8db8-1f7f96848a43');
+insert into public.maker_stock (maker_stock_id, product_id, maker_id) values ('9a8de460-34bb-4fe4-a480-7e4682da73e5', 'ac3de49c-463d-49a5-8262-e5391517f0ef','3b5b26ba-bccb-460e-8db8-1f7f96848a43');
 
 
 
